@@ -4,21 +4,31 @@
 #include <string>
 #include "player.h"
 
-class Player 
-{
-public:
-    std::string name = "Hero";
-    
-    PlayerStats player;
-    int getPlayerLife(){
-     return player.hp;
-    }
+// struct PlayerStats
+// {
+//   int hp = 200;
+//   int strength = 45;
+//   int defence = 55;
+// };
 
-    int getPlayerStrenght(){
-      return player.strenght;
-    }
-    
-    int getPlayerDefence(){
-      return player.defence;
-    }
-};
+// class Player
+// {
+// public:
+//   std::string name = "Hero";
+
+//   PlayerStats player;
+//   int getPlayerLife()
+//   {
+//     return player.hp;
+//   }
+
+//   int getPlayerStrenght()
+//   {
+//     return player.strength;
+//   }
+
+//   int getPlayerDefence()
+//   {
+//     return player.defence;
+//   }
+// };
