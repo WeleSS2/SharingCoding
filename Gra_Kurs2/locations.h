@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 #include "player.h"
-#include "mobs.h"
 
 struct ForestData
 {
@@ -27,8 +26,10 @@ class Location
 {
 
 public:
-  // create a null pointer
-  std::string *pMobsArray = nullptr;
+  // Pointer to an array of mobs in the location
+  char *pMobsArray = nullptr;
+
+  // Display the location name and description
   void showLocation(std::string description, std::string locationName)
   {
     std::cout << "********************************************\n";
@@ -40,83 +41,104 @@ public:
     std::cout << description << '\n';
   }
 
+  // Apply a defense modifier to the player's defense value
   int applyDefenceModifier(int defMod, int &playerDefence)
   {
     std::cout << "You received an area defence modifier : " << defMod << '\n';
-    std::cout << "Player defence : ";
+    std::cout << "Current Player defence : " << playerDefence << '\n';
     return playerDefence += defMod;
   }
 
+  // Apply a strength modifier to the player's strength value
   int applyStrengthModifier(int strMod, int &playerStrength)
   {
     std::cout << "You received an area strength modifier : " << strMod << '\n';
-    std::cout << "Player strength : ";
+    std::cout << "Current Player strength : " << playerStrength << '\n';
     return playerStrength += strMod;
   }
 
-  void generateMobs(std::vector<std::string> mobTypes, unsigned short int number)
+  // Generate mobs in the location
+  void generateMobs(std::vector<char> mobTypes, unsigned short int number)
   {
     unsigned short int mobNumbers;
-    mobNumbers = rand() % number + 1;
+    mobNumbers = rand() % number + 1; // add one space for '\0'
 
-       // dynamic memory allocation
-    pMobsArray = new std::string[number];
+    // Dynamically allocate memory for the mob array
+    // Need to remember to unallocate later!
+    pMobsArray = new char[mobNumbers + 1];
+    std::cout << mobNumbers;
 
-    for (size_t i = 0; i < number; i++)
+    for (size_t i = 0; i < mobNumbers; i++)
     {
       std::cout << "Generate monster # " << i + 1 << '\n';
       unsigned short int randomIndex = rand() % mobTypes.size();
-      pMobsArray[mobNumbers] = mobTypes[randomIndex];
 
-      std::cout << pMobsArray[mobNumbers] << '\n';
+      pMobsArray[i] = mobTypes[randomIndex];
     }
+    pMobsArray[mobNumbers] = '\0'; // null-terminate the array
   }
 };
 
 // class Forest inherit from Locations
 class Forest : public Location
-{
 
+{
 public:
-  std::string getLocationName() { return locationName; }
-  std::string getLocationDescription() { return locationDescription; }
-  std::vector<std::string> getMobTypes() { return mobTypes; }
+  ForestData forestLocation;
+
+  // Get the name of the forest location
+  std::string getLocationName()
+  {
+    return locationName;
+  }
+  // Get the description of the forest location
+  std::string getLocationDescription()
+  {
+    return locationDescription;
+  }
+  // Get the types of mobs in the forest location
+  std::vector<char> getMobTypes()
+  {
+    return mobTypes;
+  }
 
 private:
   std::string locationDescription = "The Dark Forest emerges ominously, its ancient trees stretching towards the heavens like gnarled fingers reaching for unwary travelers.\n"
                                     "Shadows dance among the dense undergrowth, whispered secrets lurking within its depths, inviting both danger and intrigue.";
   std::string locationName = "The Dark Forest";
-  std::vector<std::string> mobTypes = {"orc", "goblin"};
+  std::vector<char> mobTypes = {'o', 'g'};
 };
 
 // class Dungeon inherit from Locations
 class Dungeon : public Location
-{
 
+{
 public:
+  DungeonData dungeonLocation;
   std::string getLocationName() { return locationName; }
   std::string getLocationDescription() { return locationDescription; }
-  std::vector<std::string> getMobTypes() { return mobTypes; }
+  std::vector<char> getMobTypes() { return mobTypes; }
 
 private:
   std::string locationDescription = "The Dreadful Dungeon looms before you, its entrance swallowed by darkness and echoes of tormented souls.\n"
                                     "Within its cold, stone walls, a chilling aura of despair and forgotten horrors beckon for those brave enough to uncover its secrets.";
   std::string locationName = "The Dreadful Dungeon";
-  std::vector<std::string> mobTypes = {"dragon", "orc", "goblin"};
+  std::vector<char> mobTypes = {'d', 'o', 'g'};
 };
 
 // class Hill inherit from Locations
 class Hill : public Location
-{
 
+{
 public:
+  HillData hillLocation;
   std::string getLocationName() { return locationName; }
   std::string getLocationDescription() { return locationDescription; }
-  std::vector<std::string> getMobTypes() { return mobTypes; }
+  std::vector<char> getMobTypes() { return mobTypes; }
 
 private:
   std::string locationDescription = "The Highland Hill emerges majestically, its peak crowned with lush greenery and kissed by the gentle caress of a warm breeze.\n"
                                     "From its vantage point, a breathtaking vista unfolds, revealing rolling hills, cascading waterfalls, and a serene landscape that inspires awe and tranquility.";
   std::string locationName = "The Highland Hill";
-  std::vector<std::string> mobTypes = {"goblin"};
+  std::vector<char> mobTypes = {'g'};
 };
