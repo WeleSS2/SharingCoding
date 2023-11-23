@@ -1,9 +1,16 @@
 /*
-    Gra
-    Jest 1 gracz.
-    Sa dwie lokacje.
-    I sa dwa rodzaje mobow.
-    Gracz walczy z mobami w tych dwoch lokacjach.
+    Gra:
+    Jest 1 gracz. 
+    Sa trzy lokacje.
+    I sa trzy rodzaje mobow. +
+    Gracz walczy z mobami w tych lokacjach.
+    Gracz jest jeden staly w mainie jako obiekt. +
+    W mainie jest glowna petla nieskonczona ktora trwa dopoki gracz nie przejdzie calej gry lub zginie.
+    Lokacje sa tworzone w tej petli dynamicznie.
+    Moby w lokacjach tez sa tworzone dynamicznie.
+
+// + Gotowe
+
 */
 // W klasach i strukturach
 // Zmienne -> Polami
@@ -14,7 +21,7 @@
 #include <vector>
 #include <string>
 #include "locations.h"
-#include "mobs.h"
+//#include "mobs.cpp"
 
 // Typ | Nazwe     |  Liste parametrow (deklaracja),{definicja}
 void function();    /// deklracja
@@ -36,22 +43,26 @@ class Player
 public:
   std::string name = "Hero";
 
-  PlayerStats player;
   int getPlayerLife()
   {
-    return player.hp;
+//    return player.hp;
   }
 
   int getPlayerStrenght()
   {
-    return player.strength;
+//    return player.strength;
   }
 
   int getPlayerDefence()
   {
-    return player.defence;
+//    return player.defence;
   }
+
+  private:
+  int test;
+  PlayerStats stats;
 };
+
 
 enum GameLocations
 {
@@ -113,8 +124,8 @@ void createRandomLocation(Player &player, GameLocations location)
     forest.showLocation(forest.getLocationDescription(), forest.getLocationName());
 
     // apply terrain modifications
-    forest.applyDefenceModifier(forest.forestLocation.defMod, player.player.defence);
-    forest.applyStrengthModifier(forest.forestLocation.strMod, player.player.strength);
+    //forest.applyDefenceModifier(forest.forestLocation.defMod, player.player.defence);
+    //forest.applyStrengthModifier(forest.forestLocation.strMod, player.player.strength);
 
     // generate random mobs, we can specify numbers of generated mobs
     forest.generateMobs(forest.getMobTypes(), 3);
@@ -132,8 +143,8 @@ void createRandomLocation(Player &player, GameLocations location)
     dungeon.showLocation(dungeon.getLocationDescription(), dungeon.getLocationName());
 
     // apply terrain modifications
-    dungeon.applyDefenceModifier(dungeon.dungeonLocation.defMod, player.player.defence);
-    dungeon.applyStrengthModifier(dungeon.dungeonLocation.strMod, player.player.strength);
+    //dungeon.applyDefenceModifier(dungeon.dungeonLocation.defMod, player.player.defence);
+    //dungeon.applyStrengthModifier(dungeon.dungeonLocation.strMod, player.player.strength);
 
     // generate random mobs, we can specify numbers of generated mobs
     dungeon.generateMobs(dungeon.getMobTypes(), 3);
@@ -151,8 +162,8 @@ void createRandomLocation(Player &player, GameLocations location)
     hill.showLocation(hill.getLocationDescription(), hill.getLocationName());
 
     // apply terrain modifications
-    hill.applyDefenceModifier(hill.hillLocation.defMod, player.player.defence);
-    hill.applyStrengthModifier(hill.hillLocation.strMod, player.player.strength);
+    //hill.applyDefenceModifier(hill.hillLocation.defMod, player.player.defence);
+    //hill.applyStrengthModifier(hill.hillLocation.strMod, player.player.strength);
 
     // generate random mobs, we can specify numbers of generated mobs
     hill.generateMobs(hill.getMobTypes(), 3);
@@ -170,14 +181,55 @@ void createRandomLocation(Player &player, GameLocations location)
 
 int main()
 {
+  bool isGameOver = false;
+  bool keepRunning = true;
+  int cheatMode = 1;
+  char choice;
+  
+  Player Oskar;
+  //Player Szczepan(cheatMode);
+
+
+  while (keepRunning) 
+  {
+    std::cout << "******Working Title******" << std::endl;
+    std::cout << "1. Start Game" << std::endl;
+    std::cout << "2. Exit" << std::endl;
+    std::cin >> choice;
+    createRandomLocation(Oskar, FOREST);
+    
+    switch(choice)
+    {
+      case '1':
+      {
+        std::cout << "Game started" << std::endl;
+        break;
+      }
+      case '2':
+      {
+        keepRunning = false;
+        break;
+      }
+      default:
+      {
+        std::cout << "Wrong choice!" << std::endl;
+        break;
+      }
+    }
+    
+
+
+
   srand(time(NULL));
 
-  Player newPlayer;
+  //Player newPlayer;
 
   // createRandomLocation(newPlayer, FOREST);
 
   // createRandomLocation(newPlayer, DUNGEON);
 
-  createRandomLocation(newPlayer, HILL);
+  // createRandomLocation(newPlayer, HILL);
+   }
+ 
   return 0;
 }

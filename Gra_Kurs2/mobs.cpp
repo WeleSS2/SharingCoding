@@ -11,21 +11,21 @@ std::string Dragon::dialogue()
      return dialogueSentences[randomIndex];
 }
 
-int Dragon::attack(char attackType)
+void Dragon::attack(char attackType, int &playerHealth)
 { 
     switch(attackType)
     {
         case 'f':
             std::cout << attackName[0] << std::endl;
-            return 100;
+            playerHealth -= 50 * DragonStats.strength;
         case 'b':
             std::cout << attackName[1] << std::endl;
-            return 50;
+            playerHealth -= 25 * DragonStats.strength;
         case 'c':
             std::cout << attackName[2] << std::endl;
-            return 25;
-    }
-}
+            playerHealth -= 10 * DragonStats.strength;
+    };
+}   
 
 char Orc::attackRandomize() 
 {
@@ -39,7 +39,7 @@ std::string Orc::dialogue()
      return dialogueSentences[randomIndex];
 }
 
-int Orc::attack(char attackType, int &playerHealth)
+void Orc::attack(char attackType, int &playerHealth)
 { 
     switch(attackType)
     {
@@ -52,7 +52,7 @@ int Orc::attack(char attackType, int &playerHealth)
         case 'k':
             std::cout << attackName[2] << std::endl;
             playerHealth -= 10 * statsOrc.strength;
-    }
+    };
 }
 
 char Goblin::attackRandomize() 
@@ -67,7 +67,7 @@ std::string Goblin::dialogue()
      return dialogueSentences[randomIndex];
 }
 
-int Goblin::attack(char attackType, int &playerHealth)
+void Goblin::attack(char attackType, int &playerHealth)
 { 
     switch(attackType)
     {

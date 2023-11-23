@@ -37,7 +37,7 @@ public:
 
     std::string dialogue();
 
-    int attack(char attackType);
+    void attack(char attackType, int &playerHealth);
 private:
     std::vector<std::string> dialogueSentences = {"Arghhh!", "I'm going to eat you!", "Your going to be my dinner!"};
     
@@ -53,7 +53,7 @@ public:
 
     std::string dialogue();
 
-    int attack(char attackType, int &playerHealth);
+    void attack(char attackType, int &playerHealth);
 
 private:
     
@@ -75,7 +75,7 @@ public:
     GoblinStats statsGoblin;
     char attackRandomize();
     std::string dialogue(); 
-    int attack(char attackType, int &playerHealth);
+    void attack(char attackType, int &playerHealth);
 
 private:
     

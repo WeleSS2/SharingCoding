@@ -22,6 +22,15 @@ struct HillData
   int strMod{5};
 };
 
+namespace test {
+  int a = 10;
+
+  class assad {
+    public:
+    int b = 22;
+  };
+}
+
 class Location
 {
 
@@ -30,18 +39,22 @@ public:
   char *pMobsArray = nullptr;
 
   // Display the location name and description
-  void showLocation(std::string description, std::string locationName)
-  {
+  // void showLocation(std::string description, std::string locationName);
+  // Apply a defense modifier to the player's defense value
+void showLocation(std::string description, std::string locationName)
+{
     std::cout << "********************************************\n";
     std::cout << "*                                          *\n";
     std::cout << "        You entered " << locationName << "  \n";
     std::cout << "*                                          *\n";
     std::cout << "********************************************\n";
-
+ 
     std::cout << description << '\n';
-  }
+}
+
 
   // Apply a defense modifier to the player's defense value
+  // int applyDefenceModifier(int defMod, int &playerDefence);
   int applyDefenceModifier(int defMod, int &playerDefence)
   {
     std::cout << "You received an area defence modifier : " << defMod << '\n';
@@ -50,7 +63,8 @@ public:
   }
 
   // Apply a strength modifier to the player's strength value
-  int applyStrengthModifier(int strMod, int &playerStrength)
+  // int applyStrengthModifier(int strMod, int &playerStrength);
+   int applyStrengthModifier(int strMod, int &playerStrength)
   {
     std::cout << "You received an area strength modifier : " << strMod << '\n';
     std::cout << "Current Player strength : " << playerStrength << '\n';
@@ -58,6 +72,7 @@ public:
   }
 
   // Generate mobs in the location
+  // void generateMobs(std::vector<char> mobTypes, unsigned short int number);
   void generateMobs(std::vector<char> mobTypes, unsigned short int number)
   {
     unsigned short int mobNumbers;
@@ -128,7 +143,6 @@ private:
 
 // class Hill inherit from Locations
 class Hill : public Location
-
 {
 public:
   HillData hillLocation;
