@@ -10,7 +10,7 @@
     Moby w lokacjach tez sa tworzone dynamicznie.
 
 // + Gotowe
-
+// test czy działa
 */
 // W klasach i strukturach
 // Zmienne -> Polami
