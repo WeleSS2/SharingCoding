@@ -11,6 +11,8 @@
 
 // + Gotowe
 
+//czesc madzix 
+
 */
 // W klasach i strukturach
 // Zmienne -> Polami
