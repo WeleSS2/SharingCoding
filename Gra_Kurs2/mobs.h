@@ -11,7 +11,7 @@ struct GoblinStats
     int hp = 20;
     int strength = 5; 
     int defence = 1;
-};
+}; //To jest komentarz zajebisty!!!!!!!!1
 
 struct OrcStats
 {
