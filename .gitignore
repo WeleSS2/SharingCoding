@@ -1,2 +1,7 @@
 .vscode
 main.exe
+*.obj
+*.pdb
+*.ilk
+/build
+/Gra_Kurs2/build
