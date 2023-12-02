@@ -100,7 +100,7 @@ void mobSpawn(char *mobCollection)
     break;
     case 'd':
     {
-      std::cout << "Dragon Destroy\n"; ///test
+      std::cout << "Dragon Destroy\n"; ///test commit
     }
     break;
 
