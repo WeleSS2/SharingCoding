@@ -15,6 +15,7 @@ volatile int test(int abc)
   return abc + value;
 };
 
+printf("Hello world \n");
 class Test 
 {
     public:
